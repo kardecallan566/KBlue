@@ -1,3 +1,4 @@
+using Xunit;
 using KBlue.Core.Models;
 namespace KBlue.Tests;
 public sealed class DeviceModelTests
