@@ -3,6 +3,6 @@
 <NavigationView.MenuItems>
 <NavigationViewItem Content="Visão geral" Tag="home"><NavigationViewItem.Icon><SymbolIcon Symbol="Home"/></NavigationViewItem.Icon></NavigationViewItem>
 <NavigationViewItem Content="Descoberta" Tag="discovery"><NavigationViewItem.Icon><SymbolIcon Symbol="Find"/></NavigationViewItem.Icon></NavigationViewItem>
-<NavigationViewItem Content="Dispositivos" Tag="devices"><NavigationViewItem.Icon><SymbolIcon Symbol="Devices"/></NavigationViewItem.Icon></NavigationViewItem>
+<NavigationViewItem Content="Dispositivos" Tag="devices"><NavigationViewItem.Icon><SymbolIcon Symbol="AllApps"/></NavigationViewItem.Icon></NavigationViewItem>
 <NavigationViewItem Content="Analisador" Tag="analyzer"/><NavigationViewItem Content="Conexões" Tag="connections"/><NavigationViewItem Content="Transferências" Tag="transfer"/><NavigationViewItem Content="Controle remoto" Tag="control"/>
 </NavigationView.MenuItems><NavigationView.Content><Frame x:Name="ContentFrame"/></NavigationView.Content></NavigationView></Window>
