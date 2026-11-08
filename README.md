@@ -1,21 +1,32 @@
-# Kardec Connect (KBlue)
+# KBlue
 
-Aplicativo desktop Windows para descobrir, analisar e conectar dispositivos próximos, transferir arquivos e oferecer controle remoto autorizado.
+KBlue (Kardec Connect) é uma plataforma experimental para pesquisa e desenvolvimento de comunicação sem fio entre dispositivos próximos.
 
-**Objetivo central:** aproveitar ao máximo o adaptador Wi-Fi existente para conexões diretas entre dispositivos próximos, inclusive Wi-Fi Direct quando suportado, sem exigir que a comunicação passe por um roteador. Bluetooth Classic/BLE será usado quando o Windows detectar um rádio Bluetooth compatível.
+O objetivo central é investigar e aproveitar ao máximo o hardware de rádio disponível, priorizando comunicação direta e explorando camadas de sistema, drivers e firmware quando houver suporte documentado e viabilidade técnica. O projeto não é específico de um fabricante ou computador.
 
-Wi-Fi e Bluetooth são tecnologias de rádio distintas. O software não consegue transformar uma placa Wi-Fi comum em um rádio Bluetooth; a estratégia técnica está em [docs/CONNECTIVITY_STRATEGY.md](docs/CONNECTIVITY_STRATEGY.md).
+## Princípios
 
-## Requisitos
-- Windows 10 19041+ (Windows 11 recomendado)
-- .NET 8 SDK
-- Visual Studio com workload de desenvolvimento desktop .NET e suporte WinUI 3 / Windows App SDK
+- Separar claramente Bluetooth, Wi-Fi Direct, Wi-Fi/LAN e protocolos próprios KBlue.
+- Investigar capacidades reais do chipset, driver e firmware antes de prometer compatibilidade.
+- Não assumir que uma placa Wi-Fi convencional possa ser convertida em rádio Bluetooth apenas por software.
+- Implementar conexões somente com consentimento e autenticação explícitos.
+- Evoluir em checkpoints pequenos, testáveis e documentados.
 
-## Build e testes
-Comandos PowerShell: dotnet restore KBlue.sln, dotnet build KBlue.sln -c Debug e dotnet test tests/KBlue.Tests/KBlue.Tests.csproj.
+## Estado do projeto
 
-## Segurança
-Descobrir não autoriza parear, conectar, transferir ou controlar. Essas ações exigem consentimento explícito e sessões autenticadas. A descoberta de LAN deve ficar limitada a redes autorizadas.
+Consulte [Roadmap](docs/ROADMAP.md), [Estratégia de conectividade](docs/CONNECTIVITY_STRATEGY.md) e [Arquitetura](docs/ARCHITECTURE.md).
 
-## Roadmap
-CP00 fundação; CP01 inventário de hardware; CP02 Bluetooth; CP03 Wi-Fi Direct e descoberta Wi-Fi; CP04 descoberta unificada; CP05 conexões; CP06 transferência; CP07 controle remoto; CP08 release.
+### Diagnóstico inicial de hardware (CP01)
+
+No Windows, execute em PowerShell:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\tools\diagnostics\Collect-HardwareInventory.ps1
+```
+
+O script gera `kblue-hardware-report.json` e não altera configurações do sistema. Leia [Inventário de hardware](docs/HARDWARE_INVENTORY.md) antes de compartilhar o relatório.
+
+## Desenvolvimento
+
+A solução usa .NET 8 e WinUI 3. A validação de CI usa MSBuild do Visual Studio para compilar o projeto WinUI e .NET CLI para restaurar/testar os projetos.
